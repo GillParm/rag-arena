@@ -1,0 +1,767 @@
+{
+  "source": "https://github.com/fastapi/fastapi",
+  "ref": "0.162.4",
+  "commit": "e10178c18d8dc2dcc21a70e14152253abc4a4e2f",
+  "licence": "MIT",
+  "licence_holder": "Copyright (c) 2018 Sebastián Ramírez",
+  "documents": 126,
+  "total_chars": 975860,
+  "files": [
+    {
+      "id": "about/index",
+      "path": "about/index.md",
+      "chars": 60,
+      "sha256": "582a02fa04c966b6f626f751adb344b0a0eba5cbc12db149a725edd4f89e8f52"
+    },
+    {
+      "id": "advanced/additional-responses",
+      "path": "advanced/additional-responses.md",
+      "chars": 11171,
+      "sha256": "4bc4eddb219fd87227f69a58ff7e16cdb3dfc43b634c09979faf3f528f674eea"
+    },
+    {
+      "id": "advanced/additional-status-codes",
+      "path": "advanced/additional-status-codes.md",
+      "chars": 2538,
+      "sha256": "5b584c4e335177e0af4e605493f14f3a8d2af0290ee4c12cb4d525007e3cc14f"
+    },
+    {
+      "id": "advanced/advanced-dependencies",
+      "path": "advanced/advanced-dependencies.md",
+      "chars": 11960,
+      "sha256": "35e8409a40f15a3604ed5007932af0e0fe162d58f261d884c0094b7323b2dd46"
+    },
+    {
+      "id": "advanced/advanced-python-types",
+      "path": "advanced/advanced-python-types.md",
+      "chars": 2015,
+      "sha256": "75d2f7cc188d489c135aed8366d636581be12ea98fe5e76a73b33e8cb998ad68"
+    },
+    {
+      "id": "advanced/async-tests",
+      "path": "advanced/async-tests.md",
+      "chars": 4713,
+      "sha256": "3148024328764517f91969023a9eaa46e0ae60633c4b26b6a3a01f6a98b3441b"
+    },
+    {
+      "id": "advanced/behind-a-proxy",
+      "path": "advanced/behind-a-proxy.md",
+      "chars": 15432,
+      "sha256": "b2fdf8b85259386cd2f8eef0a8f4d56cdc9b8bd1aa15ae07b91e114091853479"
+    },
+    {
+      "id": "advanced/custom-response",
+      "path": "advanced/custom-response.md",
+      "chars": 13961,
+      "sha256": "761b3c968507bad8fc33f5d8e560dc3a395bad293b63ff6cb1635f4f265167a8"
+    },
+    {
+      "id": "advanced/dataclasses",
+      "path": "advanced/dataclasses.md",
+      "chars": 5930,
+      "sha256": "f17acdc228d51b5b004976df75e56659fe4c3bedf0ef3b781b77c3594ee611c1"
+    },
+    {
+      "id": "advanced/events",
+      "path": "advanced/events.md",
+      "chars": 10273,
+      "sha256": "f9e113fc4926cd76968750d7b05568337166a2694ec0793b5c22de0700745012"
+    },
+    {
+      "id": "advanced/generate-clients",
+      "path": "advanced/generate-clients.md",
+      "chars": 11605,
+      "sha256": "43ea69c955f84c8ad5efac2e633dd3357f6320c7db9a7a7d4e3b6af532838c71"
+    },
+    {
+      "id": "advanced/index",
+      "path": "advanced/index.md",
+      "chars": 678,
+      "sha256": "d099e4a0c22198faf7ccf9491024768e5667d37bd34bd961d5d56451fb961a51"
+    },
+    {
+      "id": "advanced/json-base64-bytes",
+      "path": "advanced/json-base64-bytes.md",
+      "chars": 3159,
+      "sha256": "eb9fc6be332cbbe1a0a6b75ab99179a7294c404ac452523f655294f0debe7615"
+    },
+    {
+      "id": "advanced/middleware",
+      "path": "advanced/middleware.md",
+      "chars": 4589,
+      "sha256": "30b122f37499e9511440b771c2c208f8ff51afbd1fe941d99908271eb3297240"
+    },
+    {
+      "id": "advanced/openapi-callbacks",
+      "path": "advanced/openapi-callbacks.md",
+      "chars": 12645,
+      "sha256": "3892643aaf0f07c291c73c1c3711557c5a95e7d19579f035885a64937e1ce7ea"
+    },
+    {
+      "id": "advanced/openapi-webhooks",
+      "path": "advanced/openapi-webhooks.md",
+      "chars": 3299,
+      "sha256": "2181c29a545faf31b4160d66e6838e47875037f519e411c851bb8d608acb2750"
+    },
+    {
+      "id": "advanced/opentelemetry",
+      "path": "advanced/opentelemetry.md",
+      "chars": 8306,
+      "sha256": "71bab3c0cab833996f1405bb74df32fb7e8e5ab8b92d69a2c38565b44bf6688d"
+    },
+    {
+      "id": "advanced/path-operation-advanced-configuration",
+      "path": "advanced/path-operation-advanced-configuration.md",
+      "chars": 10253,
+      "sha256": "0ac54c79bbba8eb01ddf61d56bc52012d3a657e388158dbc4067d248e9f12169"
+    },
+    {
+      "id": "advanced/response-change-status-code",
+      "path": "advanced/response-change-status-code.md",
+      "chars": 1805,
+      "sha256": "563c08eaa0f2a380ca684bcbcd2f2075aba97e546554242def868c003be3aed2"
+    },
+    {
+      "id": "advanced/response-cookies",
+      "path": "advanced/response-cookies.md",
+      "chars": 2634,
+      "sha256": "379f9d5dee871f4047fc08c4dac630f472e11d402f4488fc0ced032d4810174b"
+    },
+    {
+      "id": "advanced/response-directly",
+      "path": "advanced/response-directly.md",
+      "chars": 5086,
+      "sha256": "20b5382b0fddd7fc9406587c6b50c9b6204e9174359c69c39ea0951fdc9c8676"
+    },
+    {
+      "id": "advanced/response-headers",
+      "path": "advanced/response-headers.md",
+      "chars": 2516,
+      "sha256": "78ea7cff6e542b575e01f051c2b79bb6617d48e68149396cb6fcb5333b075286"
+    },
+    {
+      "id": "advanced/security/http-basic-auth",
+      "path": "advanced/security/http-basic-auth.md",
+      "chars": 7448,
+      "sha256": "a769e51bbb3f1cc88463eda40d72df1b31b11b69c7c7dd3193f1df87c1fbb6fc"
+    },
+    {
+      "id": "advanced/security/index",
+      "path": "advanced/security/index.md",
+      "chars": 571,
+      "sha256": "e10ccd87bb8551de3af66c5d2c117acaeabcec81411fa41753acff88b6aaad04"
+    },
+    {
+      "id": "advanced/security/oauth2-scopes",
+      "path": "advanced/security/oauth2-scopes.md",
+      "chars": 56937,
+      "sha256": "3a3467770c0f70482151db1717e53dd957207fe8eb9ca59838cbbb1a39e3b2c0"
+    },
+    {
+      "id": "advanced/settings",
+      "path": "advanced/settings.md",
+      "chars": 14366,
+      "sha256": "4deb1f0f35f6918195a6e212681f541d80ac956867910bad0e346366f7f76aab"
+    },
+    {
+      "id": "advanced/stream-data",
+      "path": "advanced/stream-data.md",
+      "chars": 11773,
+      "sha256": "0f71b2b48d44ca43412206890f2a12285e82a51e7d7fab7eff55c8bdc1dfb63a"
+    },
+    {
+      "id": "advanced/strict-content-type",
+      "path": "advanced/strict-content-type.md",
+      "chars": 3334,
+      "sha256": "64c70aed1a83076194cb13010d4036e7dcf5b891ce9588869b27e5712faa5e3b"
+    },
+    {
+      "id": "advanced/sub-applications",
+      "path": "advanced/sub-applications.md",
+      "chars": 3396,
+      "sha256": "953e50a6759ed789c4faaae4714542055c02e1dac6b9a235581a37012b2c998e"
+    },
+    {
+      "id": "advanced/templates",
+      "path": "advanced/templates.md",
+      "chars": 5335,
+      "sha256": "f81b797fd8b32ad192d8254ecef943a51aac737d83f5b80fed5ac5469a80086d"
+    },
+    {
+      "id": "advanced/testing-dependencies",
+      "path": "advanced/testing-dependencies.md",
+      "chars": 3713,
+      "sha256": "e1577f7f5eedb1dc8ea78f11325a742886492ea6e53b6cac56afe55c0cf440c5"
+    },
+    {
+      "id": "advanced/testing-events",
+      "path": "advanced/testing-events.md",
+      "chars": 2164,
+      "sha256": "6cdf623d2b6c58fb94d5ba6e96565e0df6cf82dc1d40b0649621be94cbc3e8b2"
+    },
+    {
+      "id": "advanced/testing-websockets",
+      "path": "advanced/testing-websockets.md",
+      "chars": 1090,
+      "sha256": "63984dd38d339f9daf8fb7fb2a5ecd9e5e0372c36eeb2a01379ba49102e1e030"
+    },
+    {
+      "id": "advanced/using-request-directly",
+      "path": "advanced/using-request-directly.md",
+      "chars": 2371,
+      "sha256": "ec2a67bd87ae4477027a8588233c07b2abe3a3f161713c8d6b876ac33b28d2a7"
+    },
+    {
+      "id": "advanced/websockets",
+      "path": "advanced/websockets.md",
+      "chars": 14532,
+      "sha256": "804c32eea8f01f42a7ed013a06bf355ba61d9884ba991649e9e043e5378960f6"
+    },
+    {
+      "id": "advanced/wsgi",
+      "path": "advanced/wsgi.md",
+      "chars": 1780,
+      "sha256": "b5a9c22f50f8e812f595c59cc6809a9306f6f4638cedaa73b8b6c95cb5e16c15"
+    },
+    {
+      "id": "ai-development",
+      "path": "ai-development.md",
+      "chars": 2125,
+      "sha256": "4e4f39d29659373afe43dfa2011ba850694b8e75da42eec4ea3d614ed62faa4a"
+    },
+    {
+      "id": "alternatives",
+      "path": "alternatives.md",
+      "chars": 22238,
+      "sha256": "695b4f4207b49cfa901cfe9650bf262a399839e36ee6bf6d3cf40e1183777921"
+    },
+    {
+      "id": "async",
+      "path": "async.md",
+      "chars": 23121,
+      "sha256": "ce97d13042c904772e88ef29bd1c12241f0fb3c6bdd29139ca536b404f6611ae"
+    },
+    {
+      "id": "benchmarks",
+      "path": "benchmarks.md",
+      "chars": 3461,
+      "sha256": "f0a84c8200897dea21799a7dcc355e9849f9a65621bdef4e615277dbc6acecac"
+    },
+    {
+      "id": "contributing",
+      "path": "contributing.md",
+      "chars": 271,
+      "sha256": "6dc18b05e194e864a9fd0353ae68bf89d66a531517306a38687f7b2d1b577126"
+    },
+    {
+      "id": "deployment/cloud",
+      "path": "deployment/cloud.md",
+      "chars": 990,
+      "sha256": "fd7dc58c0f1d7176c73fc7b8d4dba3f209e8258c80dd6b5d995a8e9bd530593d"
+    },
+    {
+      "id": "deployment/concepts",
+      "path": "deployment/concepts.md",
+      "chars": 18085,
+      "sha256": "6087b70dc6c56b838e29935be964f5133a5e912e1df522a909dbd325a8447a1d"
+    },
+    {
+      "id": "deployment/docker",
+      "path": "deployment/docker.md",
+      "chars": 27796,
+      "sha256": "987caa96c78516866bf5aeffdb5d2af47f0fe95e3d5d00a64bb4edf9daf5e647"
+    },
+    {
+      "id": "deployment/fastapicloud",
+      "path": "deployment/fastapicloud.md",
+      "chars": 1627,
+      "sha256": "97c9f00ada9e0ffbb14d2ab8f9b93d561c819f5ac1ba1e5115815d071ba3dd1c"
+    },
+    {
+      "id": "deployment/https",
+      "path": "deployment/https.md",
+      "chars": 13986,
+      "sha256": "52275285d6e20589b2bb42ec280e4ebe971a092a227004dc90a36cc9716fef1d"
+    },
+    {
+      "id": "deployment/index",
+      "path": "deployment/index.md",
+      "chars": 1444,
+      "sha256": "4eb228fbfe98b42400dd212b61353747160d50139e097302372800b615ef44d7"
+    },
+    {
+      "id": "deployment/manually",
+      "path": "deployment/manually.md",
+      "chars": 6386,
+      "sha256": "cd98faa0c154a15dd9a86d837c4c3f52298bd64c7b39a7ecd0cd0cc1e9ce02d0"
+    },
+    {
+      "id": "deployment/server-workers",
+      "path": "deployment/server-workers.md",
+      "chars": 8245,
+      "sha256": "af99ee67e17b1c0d3eedc6b7880a59828b580e1eb3c6a1b81b615658891a1ce7"
+    },
+    {
+      "id": "deployment/versions",
+      "path": "deployment/versions.md",
+      "chars": 3331,
+      "sha256": "af9a1cbf1f1a6f3a03abfbb69bb4181c03367444f6de3f19d9b4fad81a6209fc"
+    },
+    {
+      "id": "editor-support",
+      "path": "editor-support.md",
+      "chars": 2537,
+      "sha256": "50b75439b00ebfa116ca5d0e4978dd4373b2c22849be74a99c5f49a221c856e1"
+    },
+    {
+      "id": "environment-variables",
+      "path": "environment-variables.md",
+      "chars": 728,
+      "sha256": "6121e1635a85b3f49c8b79f2f3698a3f3d8bfe0c518735ee743341ca2794db3c"
+    },
+    {
+      "id": "fastapi-cli",
+      "path": "fastapi-cli.md",
+      "chars": 6512,
+      "sha256": "afa65bef98262a13aee706b5f833def52eaf09a09579978c3e19c1a0d391f2ca"
+    },
+    {
+      "id": "features",
+      "path": "features.md",
+      "chars": 8840,
+      "sha256": "84d872d3cb94c35b396e6bae5af0c301e1437fe0a5c43c6e922a1ff9fcd944c7"
+    },
+    {
+      "id": "help-fastapi",
+      "path": "help-fastapi.md",
+      "chars": 3179,
+      "sha256": "2d18a2e088c98279c4131cc9ffdcda966059c26db794d45ea1032b30b9c19bef"
+    },
+    {
+      "id": "history-design-future",
+      "path": "history-design-future.md",
+      "chars": 3957,
+      "sha256": "85e4086a3155c7ca5599ebc020dfeb631c0b5e0f2f082e7de5c0442dd7eb91d1"
+    },
+    {
+      "id": "how-to/authentication-error-status-code",
+      "path": "how-to/authentication-error-status-code.md",
+      "chars": 1684,
+      "sha256": "b5ff3eaa24eda344866cbdd2123aa8d0c6340bbf05f8d44ddb1f1e7427d4a155"
+    },
+    {
+      "id": "how-to/conditional-openapi",
+      "path": "how-to/conditional-openapi.md",
+      "chars": 2549,
+      "sha256": "e4dbc754320cc7ceff5105e53a4b4eb1f601acc2d47ac58acc8e4da832329f51"
+    },
+    {
+      "id": "how-to/configure-swagger-ui",
+      "path": "how-to/configure-swagger-ui.md",
+      "chars": 3540,
+      "sha256": "bb5917f25bd0844f44a6d0abd8b87a347465a7a1fbdb41d927b214db5e9bd850"
+    },
+    {
+      "id": "how-to/custom-docs-ui-assets",
+      "path": "how-to/custom-docs-ui-assets.md",
+      "chars": 14800,
+      "sha256": "3ec5b263ec53215df00ba3d31847c8205b8af3cdb9c4158d004532bc4e145460"
+    },
+    {
+      "id": "how-to/custom-request-and-route",
+      "path": "how-to/custom-request-and-route.md",
+      "chars": 9977,
+      "sha256": "66839dd7624f31fabb2c43905c2a1144691aa6dc689a9971aba7b0e2f4f1d2ad"
+    },
+    {
+      "id": "how-to/extending-openapi",
+      "path": "how-to/extending-openapi.md",
+      "chars": 6909,
+      "sha256": "22a0f39f61d3809dc4989974cc5b9b9fc2f75553fc394e17d8e707d388a53985"
+    },
+    {
+      "id": "how-to/general",
+      "path": "how-to/general.md",
+      "chars": 2418,
+      "sha256": "8e932999a52ebebbe2a1cabee1d1f324301e2c25c8a31f377564bc651d55b9dd"
+    },
+    {
+      "id": "how-to/graphql",
+      "path": "how-to/graphql.md",
+      "chars": 3036,
+      "sha256": "8d28b7455e181eb2042d0ab2fefcacd5eaa7de774ae057737d997df036ed5088"
+    },
+    {
+      "id": "how-to/index",
+      "path": "how-to/index.md",
+      "chars": 562,
+      "sha256": "fdd17b1c95964e284c2e2fc2ea9cdaf4fe3c235cef7240c463b7f28dfb8f5a66"
+    },
+    {
+      "id": "how-to/migrate-from-pydantic-v1-to-pydantic-v2",
+      "path": "how-to/migrate-from-pydantic-v1-to-pydantic-v2.md",
+      "chars": 6960,
+      "sha256": "1867a20bbce3d845155f040eeabddbb19ed6515f9e9cbb4cc4015affff9e8175"
+    },
+    {
+      "id": "how-to/separate-openapi-schemas",
+      "path": "how-to/separate-openapi-schemas.md",
+      "chars": 5324,
+      "sha256": "ed883c9d1d6c2f013ee40b667e47e98ed8cd1b1898dc23885432e7f34a2ffa5e"
+    },
+    {
+      "id": "how-to/testing-database",
+      "path": "how-to/testing-database.md",
+      "chars": 361,
+      "sha256": "a268ac588cfe6be8bfecafaafe2134e922295983e7bdd78814c43d86b1ad580e"
+    },
+    {
+      "id": "index",
+      "path": "index.md",
+      "chars": 24304,
+      "sha256": "8cfd2c031913d6424e4d0ad68e53a9e8597eb3cef7b8c0e51c46a082085a5480"
+    },
+    {
+      "id": "learn/index",
+      "path": "learn/index.md",
+      "chars": 192,
+      "sha256": "3d9c7c5b433724854f6d5895c52347e4be3fb057757ca6b8afebd2af5b7b4b71"
+    },
+    {
+      "id": "project-generation",
+      "path": "project-generation.md",
+      "chars": 1847,
+      "sha256": "c664888bf54d4b942548b7e0c5a0b80234d32b337575e8c3a4803121e043e545"
+    },
+    {
+      "id": "python-types",
+      "path": "python-types.md",
+      "chars": 12401,
+      "sha256": "c202160397db5bb811c769ecfe1aac7d9aa6ba9609e4d31960b86c9d6837ccb1"
+    },
+    {
+      "id": "resources/index",
+      "path": "resources/index.md",
+      "chars": 64,
+      "sha256": "2a7d4fc79700794498864c8c0fc1a80f3ce9ab14a30ecd98d1a0d9dbfdb1fff4"
+    },
+    {
+      "id": "translations",
+      "path": "translations.md",
+      "chars": 1796,
+      "sha256": "ea75834d82cca26c8b89381bba93000938d17b7f882ded58ee2fc81b15059905"
+    },
+    {
+      "id": "tutorial/background-tasks",
+      "path": "tutorial/background-tasks.md",
+      "chars": 6625,
+      "sha256": "4a6f446373af9dcc16c1874d6eb472c6a16c2b69e319bcdc45deba862b8f7a14"
+    },
+    {
+      "id": "tutorial/bigger-applications",
+      "path": "tutorial/bigger-applications.md",
+      "chars": 25965,
+      "sha256": "ae5ab4b73c9ef4dbe84e3056a025e77cd8656e992e290fbd7ea729c9c276d737"
+    },
+    {
+      "id": "tutorial/body",
+      "path": "tutorial/body.md",
+      "chars": 8102,
+      "sha256": "ac5f74472449bc234bc1c50412556d886ffbac38baa89cd52aeea81fc1837698"
+    },
+    {
+      "id": "tutorial/body-fields",
+      "path": "tutorial/body-fields.md",
+      "chars": 3338,
+      "sha256": "5f75dedc6ea5b72eba38b389aecb470213132bf707f35f6a248f0fe7c886c423"
+    },
+    {
+      "id": "tutorial/body-multiple-params",
+      "path": "tutorial/body-multiple-params.md",
+      "chars": 7053,
+      "sha256": "220386653ba1912303538c17b2be316e148fd73b0119477f22f6e56ba350c01f"
+    },
+    {
+      "id": "tutorial/body-nested-models",
+      "path": "tutorial/body-nested-models.md",
+      "chars": 9737,
+      "sha256": "36eb08eb130220357e603171fa6c4ba120553b34cc9f7546e04c4550f5cea3b4"
+    },
+    {
+      "id": "tutorial/body-updates",
+      "path": "tutorial/body-updates.md",
+      "chars": 7556,
+      "sha256": "3b406766a8ce8e96eb7ab0d313d6dbf83183fe8703a17f30bfe8a42b783ac6aa"
+    },
+    {
+      "id": "tutorial/cookie-param-models",
+      "path": "tutorial/cookie-param-models.md",
+      "chars": 4879,
+      "sha256": "a816cb0d0ce4e28c6d98cc265a55277aecb573df53dd9f0914c1531493bd6ea0"
+    },
+    {
+      "id": "tutorial/cookie-params",
+      "path": "tutorial/cookie-params.md",
+      "chars": 1826,
+      "sha256": "9cb1bfb9bf74bd0c2f5da8f06447a27d9e5462c1561465eb59a43e13d644844c"
+    },
+    {
+      "id": "tutorial/cors",
+      "path": "tutorial/cors.md",
+      "chars": 5612,
+      "sha256": "a6a748f674d03245bdd512d8784c83a03a16a9ec7d87326fcd81a779b7190d23"
+    },
+    {
+      "id": "tutorial/debugging",
+      "path": "tutorial/debugging.md",
+      "chars": 2536,
+      "sha256": "00a098208a7301eaaae2caf1cfc142abbe1c30d064f7423b839a37cfcdf7c43f"
+    },
+    {
+      "id": "tutorial/dependencies/classes-as-dependencies",
+      "path": "tutorial/dependencies/classes-as-dependencies.md",
+      "chars": 10574,
+      "sha256": "c61a8e64ea4f5776f13f561389a27a28ad05537dbaeca8ad41cd0c582bde161b"
+    },
+    {
+      "id": "tutorial/dependencies/dependencies-in-path-operation-decorators",
+      "path": "tutorial/dependencies/dependencies-in-path-operation-decorators.md",
+      "chars": 4986,
+      "sha256": "47dc93de0112051cb89f4a895356ef33d9ee11a8db74ebcecdd8cccbe6922588"
+    },
+    {
+      "id": "tutorial/dependencies/dependencies-with-yield",
+      "path": "tutorial/dependencies/dependencies-with-yield.md",
+      "chars": 15965,
+      "sha256": "bf4dcf9fe17ece4163bcd70fcb1a1e60eae712fbbc9df94a6c484a05cf826f58"
+    },
+    {
+      "id": "tutorial/dependencies/global-dependencies",
+      "path": "tutorial/dependencies/global-dependencies.md",
+      "chars": 1682,
+      "sha256": "cae054af45ee1a6c5cd068d40eb1c6c51f86d122e9469a207dae562970021ff2"
+    },
+    {
+      "id": "tutorial/dependencies/index",
+      "path": "tutorial/dependencies/index.md",
+      "chars": 10972,
+      "sha256": "15a71bdbf597d6974d4fa8268b760ce17fc597679116709debfc8bb1243594ce"
+    },
+    {
+      "id": "tutorial/dependencies/sub-dependencies",
+      "path": "tutorial/dependencies/sub-dependencies.md",
+      "chars": 5019,
+      "sha256": "d2ccda01d31eb6c8f5c19faf1c4363eed190420213d180a8f7205c1684cfa549"
+    },
+    {
+      "id": "tutorial/encoder",
+      "path": "tutorial/encoder.md",
+      "chars": 1932,
+      "sha256": "63515947b0c4f24a463e814d820bf94869c14232fd4933032adbebc91c969195"
+    },
+    {
+      "id": "tutorial/extra-data-types",
+      "path": "tutorial/extra-data-types.md",
+      "chars": 4092,
+      "sha256": "512c7f45b6f21eef8bee4844945c7c72f0b7491006356f0472ad065baa1ea371"
+    },
+    {
+      "id": "tutorial/extra-models",
+      "path": "tutorial/extra-models.md",
+      "chars": 9077,
+      "sha256": "10e0c1cb1f8152d5330b8b0b89554cfba35cb8f662035748388916601d39c137"
+    },
+    {
+      "id": "tutorial/first-steps",
+      "path": "tutorial/first-steps.md",
+      "chars": 13875,
+      "sha256": "ec7c57596c51400857b1ad3f43b3183fb0e27ae56124264db8edee511e6027dc"
+    },
+    {
+      "id": "tutorial/frontend",
+      "path": "tutorial/frontend.md",
+      "chars": 6579,
+      "sha256": "c80c6e32a34f870cea257435bd7763459b18ab71ed0f7ad1bc5985c442af0c8a"
+    },
+    {
+      "id": "tutorial/handling-errors",
+      "path": "tutorial/handling-errors.md",
+      "chars": 13267,
+      "sha256": "09962afa6e3a73da2c4242dbb91866fd9606e15f711f2c9daef984b1f8c5edee"
+    },
+    {
+      "id": "tutorial/header-param-models",
+      "path": "tutorial/header-param-models.md",
+      "chars": 5233,
+      "sha256": "441f8319f665db60207dc5c6c48b9bd362e3de939b0038ea20ae93fc99e9a8b9"
+    },
+    {
+      "id": "tutorial/header-params",
+      "path": "tutorial/header-params.md",
+      "chars": 3610,
+      "sha256": "4fd9ee4f47fb095664693f57dd0e25ca7cb7827fd0ee05aaac7eeddc97495951"
+    },
+    {
+      "id": "tutorial/index",
+      "path": "tutorial/index.md",
+      "chars": 7411,
+      "sha256": "70c5a34dbb1c08094b30528e13017660378e5b6faa15771b8b769dd46cf8ac96"
+    },
+    {
+      "id": "tutorial/metadata",
+      "path": "tutorial/metadata.md",
+      "chars": 8750,
+      "sha256": "0667e8eb490286a8acbbc4df1e4540d2ff6004579ff3e8e826d70064cd90f5aa"
+    },
+    {
+      "id": "tutorial/middleware",
+      "path": "tutorial/middleware.md",
+      "chars": 4425,
+      "sha256": "1195d652db68a075fc9dd453b110ac8637c94d8d28192a237d9649ef6a7f8b9b"
+    },
+    {
+      "id": "tutorial/path-operation-configuration",
+      "path": "tutorial/path-operation-configuration.md",
+      "chars": 6752,
+      "sha256": "aded901bf032036034309e1d7fae6d24f8af3a070fcb7612bf2c62449a9b65d7"
+    },
+    {
+      "id": "tutorial/path-params",
+      "path": "tutorial/path-params.md",
+      "chars": 11628,
+      "sha256": "0ba2814645f106c20cd09697a6d1f328837b14c862ae5c1475cd8978fbc96569"
+    },
+    {
+      "id": "tutorial/path-params-numeric-validations",
+      "path": "tutorial/path-params-numeric-validations.md",
+      "chars": 8222,
+      "sha256": "079233a8c3f903f7c90be9d6a6361704399758d1acf18b65e989af92d6b468a2"
+    },
+    {
+      "id": "tutorial/query-param-models",
+      "path": "tutorial/query-param-models.md",
+      "chars": 5715,
+      "sha256": "a768fd9ad47e5e37bfa2c981e199832c77e4b57dac4da3fb25bc11fdc2fbc382"
+    },
+    {
+      "id": "tutorial/query-params",
+      "path": "tutorial/query-params.md",
+      "chars": 6171,
+      "sha256": "b5dc455c0316d7a3f408da009f4b417b2a1fd70db8755b137fdce8252751020e"
+    },
+    {
+      "id": "tutorial/query-params-str-validations",
+      "path": "tutorial/query-params-str-validations.md",
+      "chars": 21594,
+      "sha256": "7d08815b813445e39dc5441d08f9d187d21442993786545a62cb4e1caddc2e15"
+    },
+    {
+      "id": "tutorial/request-files",
+      "path": "tutorial/request-files.md",
+      "chars": 10072,
+      "sha256": "d520e168f9f368424f801b05604eb6026554ca3a0044c2bf19851a03759bb60d"
+    },
+    {
+      "id": "tutorial/request-form-models",
+      "path": "tutorial/request-form-models.md",
+      "chars": 7099,
+      "sha256": "0038a8191b2f6e65824856c1d7f9d3c792ab4e35f2746407f2976d9c385ecd9f"
+    },
+    {
+      "id": "tutorial/request-forms",
+      "path": "tutorial/request-forms.md",
+      "chars": 3467,
+      "sha256": "908738e9e1763e353e3424227da51bbcd94f1167ffd65e2cc4426beb0f1a6ff8"
+    },
+    {
+      "id": "tutorial/request-forms-and-files",
+      "path": "tutorial/request-forms-and-files.md",
+      "chars": 1895,
+      "sha256": "4237412fe00529e9235605d7f07cbf9a295c91f58bd641fe78910728687a889a"
+    },
+    {
+      "id": "tutorial/response-model",
+      "path": "tutorial/response-model.md",
+      "chars": 21684,
+      "sha256": "01fdbec41492ae59720fd59e82113dfddc8bd1afe6e89bba6a577d5e9fe2cda8"
+    },
+    {
+      "id": "tutorial/response-status-code",
+      "path": "tutorial/response-status-code.md",
+      "chars": 4173,
+      "sha256": "c46bf5b85b39a1a6fa21ab9826d50d5fb12dcca873c0209288c4274c53c664c3"
+    },
+    {
+      "id": "tutorial/schema-extra-example",
+      "path": "tutorial/schema-extra-example.md",
+      "chars": 12390,
+      "sha256": "ac51face5314fbee7479fe9f72ab386d75732abb984618a4a61396cd3d46170f"
+    },
+    {
+      "id": "tutorial/security/first-steps",
+      "path": "tutorial/security/first-steps.md",
+      "chars": 8962,
+      "sha256": "ed01318e12adb1426f1157a12d0d7a145b4de2a1462968f978848f0be6d010a0"
+    },
+    {
+      "id": "tutorial/security/get-current-user",
+      "path": "tutorial/security/get-current-user.md",
+      "chars": 7752,
+      "sha256": "e2a43602514424d26ae331a15cfa077f593e63f4cc8758a691bbd17793ef0595"
+    },
+    {
+      "id": "tutorial/security/index",
+      "path": "tutorial/security/index.md",
+      "chars": 4406,
+      "sha256": "38d54c7a8fa51bbba1cb22e456ebddf1f81c5963d871dfa8d75ef5adf87d6136"
+    },
+    {
+      "id": "tutorial/security/oauth2-jwt",
+      "path": "tutorial/security/oauth2-jwt.md",
+      "chars": 27326,
+      "sha256": "825ecf46203635a925fcd52b58f3863b3de90dfd5303510a43984058540fd488"
+    },
+    {
+      "id": "tutorial/security/simple-oauth2",
+      "path": "tutorial/security/simple-oauth2.md",
+      "chars": 21474,
+      "sha256": "f298388e4be3ac129eb3c4376096e7d311228f132e46f0cc8075f8d5e1b46606"
+    },
+    {
+      "id": "tutorial/server-sent-events",
+      "path": "tutorial/server-sent-events.md",
+      "chars": 8048,
+      "sha256": "eb9757b049551de4f7ede95a99c74febdd297182990af7a54d7c0f4ecd8046c8"
+    },
+    {
+      "id": "tutorial/sql-databases",
+      "path": "tutorial/sql-databases.md",
+      "chars": 18161,
+      "sha256": "eee372d04daea9480d4a1ec2fa7a105afb908e52fdde45f89ef32a109017d7ac"
+    },
+    {
+      "id": "tutorial/static-files",
+      "path": "tutorial/static-files.md",
+      "chars": 1942,
+      "sha256": "7a68f12a94fe367c720ec82d879ce6a5c0d4dee3f68d36c3b783f6c5280f20d2"
+    },
+    {
+      "id": "tutorial/stream-json-lines",
+      "path": "tutorial/stream-json-lines.md",
+      "chars": 5337,
+      "sha256": "6ad5bfe0491f1ba20120e536a373eccc35ad91882ad2aeedddb304c89f500ecd"
+    },
+    {
+      "id": "tutorial/testing",
+      "path": "tutorial/testing.md",
+      "chars": 8815,
+      "sha256": "29005c0fc6f67f56c8505735179864413a95801302d7678e5569b6f30e39fb94"
+    },
+    {
+      "id": "virtual-environments",
+      "path": "virtual-environments.md",
+      "chars": 1076,
+      "sha256": "0e26ac04afaa9ee4c09dbf63aa53686761bd4e95824294dd1c88caf25ada2ab9"
+    }
+  ]
+}
