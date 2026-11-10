@@ -1,0 +1,3 @@
+# `APIRouter` class
+
+::: fastapi.APIRouter
