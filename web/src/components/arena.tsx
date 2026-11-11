@@ -191,7 +191,7 @@ export function Arena({ config }: { config: ArenaConfig }) {
             . Every column used the same generator; only retrieval differs.
           </p>
           <div className="-mx-4 mt-3 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6">
-            <div className="border-rule bg-rule grid min-w-[1200px] grid-cols-5 gap-px overflow-hidden rounded-lg border max-[700px]:min-w-0 max-[700px]:grid-cols-1">
+            <div className="border-rule bg-rule grid min-w-[1200px] grid-cols-5 gap-x-px gap-y-0 overflow-hidden rounded-lg border max-[700px]:min-w-0 max-[700px]:grid-cols-1 max-[700px]:gap-y-3 max-[700px]:border-0 max-[700px]:bg-transparent">
               {response.results.map((r) => (
                 <Lane key={r.pipeline} result={r} description={descriptions[r.pipeline]} />
               ))}

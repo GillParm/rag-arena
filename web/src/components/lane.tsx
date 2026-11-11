@@ -131,7 +131,7 @@ export function Lane({ result, description }: { result: PipelineResult; descript
   return (
     <section
       aria-labelledby={`lane-${result.pipeline}`}
-      className="bg-surface flex min-w-0 flex-col border-t-[3px]"
+      className="bg-surface max-[700px]:border-rule row-span-3 grid min-w-0 grid-cols-1 grid-rows-subgrid border-t-[3px] max-[700px]:rounded-md max-[700px]:border-x max-[700px]:border-b"
       style={{ borderTopColor: color }}
     >
       <header className="border-rule border-b px-4 pt-3 pb-3">
@@ -159,7 +159,7 @@ export function Lane({ result, description }: { result: PipelineResult; descript
         </dl>
       </header>
 
-      <div className="flex-1 px-4 py-4">
+      <div className="px-4 py-4">
         {result.error && (
           <p role="alert" className="text-danger mb-3 text-[13.5px]">
             {result.error}
