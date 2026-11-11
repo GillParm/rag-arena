@@ -1,5 +1,9 @@
 name: rag-arena
 
+# Local stack: Postgres + pgvector on 5433, the API on 8300, the web app on 3300.
+#   docker compose up -d --build
+#   docker compose run --rm api rag-arena corpus download
+#   docker compose run --rm api rag-arena index build
 services:
   db:
     image: pgvector/pgvector:pg17
@@ -17,5 +21,34 @@ services:
       timeout: 3s
       retries: 20
 
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      RAG_ARENA_DATABASE_URL: postgresql://rag:rag@db:5432/rag_arena
+      RAG_ARENA_CORS_ORIGINS: '["http://localhost:3300"]'
+    ports:
+      - "8300:8300"
+    volumes:
+      - arena-data:/app/data
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build:
+      context: web
+    environment:
+      API_URL: http://api:8300
+    ports:
+      - "3300:3300"
+    depends_on:
+      - api
+
 volumes:
   pgdata:
+  arena-data:
