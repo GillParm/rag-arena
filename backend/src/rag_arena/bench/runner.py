@@ -102,6 +102,23 @@ def record_spans(rec: dict[str, Any]) -> list[Span]:
     return [Span(d, s, e) for d, s, e in rec["spans"]]
 
 
+async def prefetch_rewrites(items: Sequence[QAItem], rewriter: CachedRewriter, log: Log) -> None:
+    """Write missing rewrites concurrently (bounded by the client's rate limiter) before the
+    timed retrieval loop. Each rewrite keeps the latency of its own successful model call."""
+    todo = [it for it in items if not rewriter.store.has((it.question,))]
+    if not todo:
+        return
+    log(f"writing query rewrites for {len(todo)} questions")
+
+    async def one(it: QAItem) -> None:
+        try:
+            await rewriter.rewrite(it.question)
+        except (DailyQuotaExhaustedError, RetryGiveUpError) as exc:
+            log(f"rewrite failed for {it.id}: {exc}")
+
+    await asyncio.gather(*(one(it) for it in todo))
+
+
 async def stage_retrieval(
     items: Sequence[QAItem],
     cfg: BenchConfig,
