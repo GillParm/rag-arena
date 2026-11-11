@@ -1,0 +1,67 @@
+{
+  "updated": "2026-11-11T20:47:40+00:00",
+  "chunk_sets": [
+    "fixed",
+    "recursive",
+    "heading"
+  ],
+  "pipelines": [
+    {
+      "id": "bm25",
+      "base": "bm25",
+      "reranker_model": null
+    },
+    {
+      "id": "dense",
+      "base": "dense",
+      "reranker_model": null
+    },
+    {
+      "id": "hybrid",
+      "base": "hybrid",
+      "reranker_model": null
+    },
+    {
+      "id": "hybrid_rerank",
+      "base": "hybrid_rerank",
+      "reranker_model": null
+    },
+    {
+      "id": "hybrid_rewrite",
+      "base": "hybrid_rewrite",
+      "reranker_model": null
+    },
+    {
+      "id": "hybrid_rerank_minilm",
+      "base": "hybrid_rerank",
+      "reranker_model": "Xenova/ms-marco-MiniLM-L-6-v2"
+    },
+    {
+      "id": "hybrid_rerank_jina",
+      "base": "hybrid_rerank",
+      "reranker_model": "jinaai/jina-reranker-v1-turbo-en"
+    }
+  ],
+  "pipeline_config": {
+    "k": 10,
+    "candidates": 50,
+    "rerank_depth": 20,
+    "rrf_k": 60
+  },
+  "headline": "heading",
+  "headline_rule_scores": {
+    "fixed": {
+      "mean_recall@5": 0.764,
+      "mean_mrr@10": 0.5938714285714286
+    },
+    "recursive": {
+      "mean_recall@5": 0.75,
+      "mean_mrr@10": 0.570252380952381
+    },
+    "heading": {
+      "mean_recall@5": 0.776,
+      "mean_mrr@10": 0.5856666666666667
+    }
+  },
+  "questions": 100
+}
