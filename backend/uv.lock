@@ -1032,6 +1032,7 @@ dependencies = [
     { name = "fastapi" },
     { name = "fastembed" },
     { name = "google-genai" },
+    { name = "httpx2" },
     { name = "numpy" },
     { name = "pgvector" },
     { name = "psycopg", extra = ["binary"] },
@@ -1046,7 +1047,6 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "httpx2" },
     { name = "mypy" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
@@ -1060,6 +1060,7 @@ requires-dist = [
     { name = "fastapi", specifier = ">=0.162.4" },
     { name = "fastembed", specifier = ">=0.9.1" },
     { name = "google-genai", specifier = ">=3.1.0" },
+    { name = "httpx2", specifier = ">=2.16.0" },
     { name = "numpy", specifier = ">=2.5.4" },
     { name = "pgvector", specifier = ">=0.5.1" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3.8" },
@@ -1074,7 +1075,6 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "httpx2", specifier = ">=2.16.0" },
     { name = "mypy", specifier = ">=2.4.1" },
     { name = "pytest", specifier = ">=9.2.0" },
     { name = "pytest-asyncio", specifier = ">=1.4.1.post1" },

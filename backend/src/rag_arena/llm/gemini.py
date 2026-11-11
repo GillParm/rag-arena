@@ -7,6 +7,7 @@ import re
 import time
 from typing import Any
 
+import httpx2
 from google import genai
 from google.genai import errors, types
 
@@ -48,8 +49,8 @@ def gemini_retry_after(exc: Exception) -> float | None:
             details = (exc.details or {}).get("error", {}).get("details") if exc.details else None
             return _retry_delay_seconds(details)
         return None
-    name = type(exc).__name__
-    if "Timeout" in name or "Connect" in name or "RemoteProtocol" in name:
+    # Dropped connections, read errors and timeouts on the way to or from the API.
+    if isinstance(exc, httpx2.TransportError):
         return 0.0
     return None
 

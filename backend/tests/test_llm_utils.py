@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 
+import httpx2
 import pytest
 from google.genai import errors
 
@@ -76,6 +77,8 @@ def test_gemini_retry_classification() -> None:
     assert is_daily_quota(_api_error(429, [daily]))
     assert gemini_retry_after(_api_error(429, [daily])) is None
     assert gemini_retry_after(ValueError("x")) is None
+    assert gemini_retry_after(httpx2.ReadError("connection reset")) == 0.0
+    assert gemini_retry_after(httpx2.ConnectTimeout("slow")) == 0.0
 
 
 async def test_rate_limiter_caps_requests_per_minute() -> None:
