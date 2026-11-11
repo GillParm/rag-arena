@@ -137,11 +137,10 @@ async def stage_retrieval(
             if not todo:
                 continue
             reranker = reranker_for(spec.reranker_model) if spec.base == "hybrid_rerank" else None
-            rw = (
-                CachedRewriter(rewriter(), stores.rewrites)
-                if spec.base == "hybrid_rewrite"
-                else None
-            )
+            rw = None
+            if spec.base == "hybrid_rewrite":
+                rw = CachedRewriter(rewriter(), stores.rewrites)
+                await prefetch_rewrites(todo, rw, log)
             # Warm-up query (not recorded) so model loading never lands in a latency sample.
             warm_base = "hybrid" if spec.base == "hybrid_rewrite" else spec.base
             await run_pipeline(
