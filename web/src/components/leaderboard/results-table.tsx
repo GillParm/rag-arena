@@ -35,7 +35,7 @@ export function ResultsTable({ entries, winner }: { entries: BoardEntry[]; winne
     v != null && Math.abs(v - b) < 1e-9 ? "font-bold text-ink" : "";
 
   return (
-    <div className="border-rule bg-surface overflow-x-auto rounded-lg border">
+    <div className="border-rule bg-surface relative overflow-x-auto rounded-lg border">
       <table className="w-full min-w-[960px] text-[14px]">
         <caption className="sr-only">
           Headline results per pipeline. Best value in each quality column is bold.

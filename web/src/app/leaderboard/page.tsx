@@ -17,7 +17,7 @@ const REPO = "https://github.com/GillParm/rag-arena";
 
 function Panel({ title, note, children }: { title: string; note: string; children: ReactNode }) {
   return (
-    <section className="border-rule bg-surface rounded-lg border p-5">
+    <section className="border-rule bg-surface min-w-0 rounded-lg border p-5">
       <h2 className="text-[16px] font-semibold tracking-tight">{title}</h2>
       <p className="text-ink-2 mt-1 max-w-[60ch] text-[13.5px] leading-snug">{note}</p>
       <div className="mt-4">{children}</div>
@@ -44,9 +44,11 @@ function verdict(board: Leaderboard): string[] {
     );
   }
   const bestRecall = [...rows].sort((a, b) => b["recall@5"] - a["recall@5"])[0];
-  const fastest = [...rows].sort((a, b) => (a.e2e_p50_ms ?? 0) - (b.e2e_p50_ms ?? 0))[0];
+  const byRetrieval = [...rows].sort((a, b) => a.retrieval_p50_ms - b.retrieval_p50_ms);
+  const fastest = byRetrieval[0];
+  const slowest = byRetrieval[byRetrieval.length - 1];
   lines.push(
-    `${bestRecall.label} put the evidence in its top five most often (recall@5 ${formatScore(bestRecall["recall@5"])}). ${fastest.label} was fastest end to end at ${formatMs(fastest.e2e_p50_ms)} median.`,
+    `${bestRecall.label} put the evidence in its top five most often (recall@5 ${formatScore(bestRecall["recall@5"])}). Median retrieval took from ${formatMs(fastest.retrieval_p50_ms)} (${fastest.label}) to ${formatMs(slowest.retrieval_p50_ms)} (${slowest.label}).`,
   );
   return lines;
 }
@@ -62,6 +64,11 @@ function Board({ board }: { board: Leaderboard }) {
     (e) => e.base === "hybrid_rerank" && e.chunk_set === board.headline_chunk_set,
   );
   const lines = verdict(board);
+  const genMedians = headline.map((e) => e.generation_p50_ms).filter((v): v is number => v != null);
+  const genSpread =
+    genMedians.length > 1 && Math.max(...genMedians) > 1.5 * Math.min(...genMedians)
+      ? ([Math.min(...genMedians), Math.max(...genMedians)] as const)
+      : null;
 
   return (
     <>
@@ -83,10 +90,10 @@ function Board({ board }: { board: Leaderboard }) {
         <ResultsTable entries={headline} winner={board.comparisons.winner} />
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-2">
+      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Panel
-          title="Quality against waiting time"
-          note="Mean correctness per pipeline with its 95% bootstrap interval, against median end-to-end latency. Up and to the left is better."
+          title="Answer quality against retrieval time"
+          note="Mean correctness per pipeline with its 95% bootstrap interval, against median retrieval latency. Up and to the left is better."
         >
           <QualityLatency entries={headline} />
         </Panel>
@@ -132,7 +139,10 @@ function Board({ board }: { board: Leaderboard }) {
               <tbody>
                 {variants.map((v) => (
                   <tr key={v.pipeline} className="border-rule border-b last:border-b-0">
-                    <th scope="row" className="py-2 pr-3 text-left font-medium">
+                    <th
+                      scope="row"
+                      className="py-2 pr-3 text-left font-medium [overflow-wrap:anywhere]"
+                    >
                       {v.reranker_model ?? board.reranker_model}
                       {v.pipeline === "hybrid_rerank" && (
                         <span className="text-muted block text-[12px] font-normal">
@@ -171,9 +181,17 @@ function Board({ board }: { board: Leaderboard }) {
             .
           </li>
           <li>
-            Latency was measured on one laptop CPU, one query at a time. The reranker and the query
-            rewriter dominate their pipelines&apos; time; free-tier API latency varies by hour.
+            Retrieval latency was measured on one laptop CPU, one query at a time. The reranker and
+            the query rewriter dominate their pipelines&apos; time.
           </li>
+          {genSpread && (
+            <li>
+              End-to-end latency adds one call to the shared generator. Its median ranged from{" "}
+              {formatMs(genSpread[0])} to {formatMs(genSpread[1])} across pipelines although the
+              model and prompt were identical, because the free tier&apos;s speed changed while the
+              run was in progress. Compare pipelines on retrieval latency.
+            </li>
+          )}
           <li>
             One corpus, {board.questions} questions and one judge model: treat small gaps as ties.
             Raw outputs for every question are in{" "}
