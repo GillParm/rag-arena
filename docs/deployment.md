@@ -63,6 +63,10 @@ gcloud run deploy rag-arena-web --image=$REPO/web:latest --region=$REGION \
 - The BM25 index is rebuilt from Postgres on start-up when it is missing, which takes a few
   seconds per chunk set. Startup also loads the default chunk set and the reranker so the
   first question is not slow; give the service a start-up probe of at least 60 seconds.
+- In local Docker testing (a Colima VM with 6 vCPUs on Apple silicon), the first reranked
+  question after the container had sat idle for hours took 26 to 95 seconds, and later ones
+  about 6 seconds. Expect the same on a scaled-down instance; set `--min-instances=1` if the
+  first question after a quiet spell matters.
 - `/api/ask` is rate limited per client IP in memory, which is per instance. For a public
   demo, put Cloud Armor or API Gateway in front for a global limit, and set a budget alert on
   the Gemini key.
