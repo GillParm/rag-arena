@@ -1,0 +1,769 @@
+{
+  "run": "main",
+  "corpus": {
+    "ref": "0.162.4",
+    "commit": "e10178c18d8dc2dcc21a70e14152253abc4a4e2f",
+    "documents": 126
+  },
+  "eval_set_sha256": "46450dfbeb5177fea6f902cda3ffa50c07b2b8ea474aa57b10662a37359b67f0",
+  "human_reviewed": 0,
+  "generator_model": "gemini-3.5-flash-lite",
+  "judge_model": "claude-opus-5-5",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "reranker_model": "BAAI/bge-reranker-base",
+  "rubric_sha256": "495124a4ada71f9b40ae3824a8fb0e132af7a8117d17560d17ca56b35a511fa0",
+  "code_commit": "16e2ef18976d3e146a0cd84d3c83a0e0feb76c93",
+  "anthropic_spend_usd": {
+    "dev": 0.0028,
+    "eval-filter": 0.4538,
+    "eval-generate": 0.7059,
+    "judge": 4.7607
+  },
+  "questions": 100,
+  "headline_chunk_set": "heading",
+  "headline_rule": "highest mean recall@5 across the five pipelines; ties by mean MRR@10",
+  "headline_rule_scores": {
+    "fixed": {
+      "mean_recall@5": 0.764,
+      "mean_mrr@10": 0.5938714285714286
+    },
+    "recursive": {
+      "mean_recall@5": 0.75,
+      "mean_mrr@10": 0.570252380952381
+    },
+    "heading": {
+      "mean_recall@5": 0.776,
+      "mean_mrr@10": 0.5856666666666667
+    }
+  },
+  "winner_rule": "highest mean correctness on the headline chunk set; ties by recall@5",
+  "headline": [
+    {
+      "pipeline": "bm25",
+      "label": "BM25",
+      "base": "bm25",
+      "reranker_model": null,
+      "chunk_set": "heading",
+      "n": 100,
+      "recall@5": 0.75,
+      "recall@5_ci": [
+        0.66,
+        0.84
+      ],
+      "recall@10": 0.79,
+      "mrr@10": 0.5678,
+      "coverage@5": 0.75,
+      "retrieval_p50_ms": 0.2,
+      "retrieval_p95_ms": 0.2,
+      "answered": 100,
+      "judged": 100,
+      "judge_failures": 0,
+      "faithfulness": 4.97,
+      "faithfulness_ci": [
+        4.93,
+        5.0
+      ],
+      "faithful_rate": 1.0,
+      "correctness": 4.15,
+      "correctness_ci": [
+        3.93,
+        4.36
+      ],
+      "correct_rate": 0.86,
+      "abstention_rate": 0.07,
+      "generation_p50_ms": 5381.9,
+      "generation_p95_ms": 8306.9,
+      "e2e_p50_ms": 5382.1,
+      "e2e_p95_ms": 8307.0,
+      "cost_per_1k_usd": 0.5756
+    },
+    {
+      "pipeline": "dense",
+      "label": "Dense",
+      "base": "dense",
+      "reranker_model": null,
+      "chunk_set": "heading",
+      "n": 100,
+      "recall@5": 0.75,
+      "recall@5_ci": [
+        0.67,
+        0.83
+      ],
+      "recall@10": 0.87,
+      "mrr@10": 0.5408,
+      "coverage@5": 0.75,
+      "retrieval_p50_ms": 11.9,
+      "retrieval_p95_ms": 16.6,
+      "answered": 100,
+      "judged": 100,
+      "judge_failures": 0,
+      "faithfulness": 4.96,
+      "faithfulness_ci": [
+        4.92,
+        4.99
+      ],
+      "faithful_rate": 1.0,
+      "correctness": 4.08,
+      "correctness_ci": [
+        3.85,
+        4.31
+      ],
+      "correct_rate": 0.84,
+      "abstention_rate": 0.09,
+      "generation_p50_ms": 4844.4,
+      "generation_p95_ms": 8998.7,
+      "e2e_p50_ms": 4857.1,
+      "e2e_p95_ms": 9009.7,
+      "cost_per_1k_usd": 0.5771
+    },
+    {
+      "pipeline": "hybrid",
+      "label": "Hybrid (RRF)",
+      "base": "hybrid",
+      "reranker_model": null,
+      "chunk_set": "heading",
+      "n": 100,
+      "recall@5": 0.81,
+      "recall@5_ci": [
+        0.73,
+        0.88
+      ],
+      "recall@10": 0.87,
+      "mrr@10": 0.5977,
+      "coverage@5": 0.81,
+      "retrieval_p50_ms": 11.5,
+      "retrieval_p95_ms": 13.6,
+      "answered": 100,
+      "judged": 100,
+      "judge_failures": 0,
+      "faithfulness": 4.97,
+      "faithfulness_ci": [
+        4.94,
+        5.0
+      ],
+      "faithful_rate": 1.0,
+      "correctness": 4.25,
+      "correctness_ci": [
+        4.04,
+        4.44
+      ],
+      "correct_rate": 0.88,
+      "abstention_rate": 0.05,
+      "generation_p50_ms": 2799.6,
+      "generation_p95_ms": 9696.4,
+      "e2e_p50_ms": 2811.2,
+      "e2e_p95_ms": 9708.9,
+      "cost_per_1k_usd": 0.5949
+    },
+    {
+      "pipeline": "hybrid_rerank",
+      "label": "Hybrid + rerank",
+      "base": "hybrid_rerank",
+      "reranker_model": null,
+      "chunk_set": "heading",
+      "n": 100,
+      "recall@5": 0.75,
+      "recall@5_ci": [
+        0.67,
+        0.83
+      ],
+      "recall@10": 0.86,
+      "mrr@10": 0.6059,
+      "coverage@5": 0.75,
+      "retrieval_p50_ms": 4984.1,
+      "retrieval_p95_ms": 5649.2,
+      "answered": 100,
+      "judged": 100,
+      "judge_failures": 0,
+      "faithfulness": 4.96,
+      "faithfulness_ci": [
+        4.92,
+        4.99
+      ],
+      "faithful_rate": 1.0,
+      "correctness": 4.13,
+      "correctness_ci": [
+        3.9,
+        4.36
+      ],
+      "correct_rate": 0.85,
+      "abstention_rate": 0.08,
+      "generation_p50_ms": 1267.7,
+      "generation_p95_ms": 8546.8,
+      "e2e_p50_ms": 6638.7,
+      "e2e_p95_ms": 12673.8,
+      "cost_per_1k_usd": 0.6289
+    },
+    {
+      "pipeline": "hybrid_rewrite",
+      "label": "Hybrid + rewrite",
+      "base": "hybrid_rewrite",
+      "reranker_model": null,
+      "chunk_set": "heading",
+      "n": 100,
+      "recall@5": 0.82,
+      "recall@5_ci": [
+        0.74,
+        0.89
+      ],
+      "recall@10": 0.93,
+      "mrr@10": 0.6161,
+      "coverage@5": 0.82,
+      "retrieval_p50_ms": 3898.1,
+      "retrieval_p95_ms": 8079.8,
+      "answered": 100,
+      "judged": 100,
+      "judge_failures": 0,
+      "faithfulness": 4.98,
+      "faithfulness_ci": [
+        4.95,
+        5.0
+      ],
+      "faithful_rate": 1.0,
+      "correctness": 4.24,
+      "correctness_ci": [
+        4.02,
+        4.44
+      ],
+      "correct_rate": 0.91,
+      "abstention_rate": 0.07,
+      "generation_p50_ms": 1473.1,
+      "generation_p95_ms": 7045.6,
+      "e2e_p50_ms": 5904.9,
+      "e2e_p95_ms": 12425.8,
+      "cost_per_1k_usd": 0.816
+    }
+  ],
+  "ablation": [
+    {
+      "pipeline": "bm25",
+      "label": "BM25",
+      "base": "bm25",
+      "reranker_model": null,
+      "chunk_set": "fixed",
+      "n": 100,
+      "recall@5": 0.76,
+      "recall@5_ci": [
+        0.6798,
+        0.84
+      ],
+      "recall@10": 0.84,
+      "mrr@10": 0.5724,
+      "coverage@5": 0.76,
+      "retrieval_p50_ms": 0.2,
+      "retrieval_p95_ms": 0.5
+    },
+    {
+      "pipeline": "dense",
+      "label": "Dense",
+      "base": "dense",
+      "reranker_model": null,
+      "chunk_set": "fixed",
+      "n": 100,
+      "recall@5": 0.67,
+      "recall@5_ci": [
+        0.58,
+        0.76
+      ],
+      "recall@10": 0.77,
+      "mrr@10": 0.5071,
+      "coverage@5": 0.6673,
+      "retrieval_p50_ms": 14.1,
+      "retrieval_p95_ms": 29.9
+    },
+    {
+      "pipeline": "hybrid",
+      "label": "Hybrid (RRF)",
+      "base": "hybrid",
+      "reranker_model": null,
+      "chunk_set": "fixed",
+      "n": 100,
+      "recall@5": 0.79,
+      "recall@5_ci": [
+        0.7,
+        0.87
+      ],
+      "recall@10": 0.87,
+      "mrr@10": 0.5882,
+      "coverage@5": 0.7929,
+      "retrieval_p50_ms": 11.5,
+      "retrieval_p95_ms": 19.5
+    },
+    {
+      "pipeline": "hybrid_rerank",
+      "label": "Hybrid + rerank",
+      "base": "hybrid_rerank",
+      "reranker_model": null,
+      "chunk_set": "fixed",
+      "n": 100,
+      "recall@5": 0.8,
+      "recall@5_ci": [
+        0.72,
+        0.88
+      ],
+      "recall@10": 0.86,
+      "mrr@10": 0.6427,
+      "coverage@5": 0.7983,
+      "retrieval_p50_ms": 4794.5,
+      "retrieval_p95_ms": 5775.0
+    },
+    {
+      "pipeline": "hybrid_rewrite",
+      "label": "Hybrid + rewrite",
+      "base": "hybrid_rewrite",
+      "reranker_model": null,
+      "chunk_set": "fixed",
+      "n": 100,
+      "recall@5": 0.8,
+      "recall@5_ci": [
+        0.72,
+        0.87
+      ],
+      "recall@10": 0.89,
+      "mrr@10": 0.659,
+      "coverage@5": 0.8063,
+      "retrieval_p50_ms": 3906.2,
+      "retrieval_p95_ms": 8082.9
+    },
+    {
+      "pipeline": "hybrid_rerank_minilm",
+      "label": "Hybrid + MiniLM rerank",
+      "base": "hybrid_rerank",
+      "reranker_model": "Xenova/ms-marco-MiniLM-L-6-v2",
+      "chunk_set": "fixed",
+      "n": 100,
+      "recall@5": 0.73,
+      "recall@5_ci": [
+        0.64,
+        0.81
+      ],
+      "recall@10": 0.8,
+      "mrr@10": 0.5461,
+      "coverage@5": 0.7291,
+      "retrieval_p50_ms": 759.0,
+      "retrieval_p95_ms": 912.9
+    },
+    {
+      "pipeline": "hybrid_rerank_jina",
+      "label": "Hybrid + Jina rerank",
+      "base": "hybrid_rerank",
+      "reranker_model": "jinaai/jina-reranker-v1-turbo-en",
+      "chunk_set": "fixed",
+      "n": 100,
+      "recall@5": 0.79,
+      "recall@5_ci": [
+        0.71,
+        0.87
+      ],
+      "recall@10": 0.83,
+      "mrr@10": 0.559,
+      "coverage@5": 0.7883,
+      "retrieval_p50_ms": 864.6,
+      "retrieval_p95_ms": 1194.8
+    },
+    {
+      "pipeline": "bm25",
+      "label": "BM25",
+      "base": "bm25",
+      "reranker_model": null,
+      "chunk_set": "recursive",
+      "n": 100,
+      "recall@5": 0.74,
+      "recall@5_ci": [
+        0.65,
+        0.83
+      ],
+      "recall@10": 0.8,
+      "mrr@10": 0.5558,
+      "coverage@5": 0.74,
+      "retrieval_p50_ms": 0.2,
+      "retrieval_p95_ms": 0.2
+    },
+    {
+      "pipeline": "dense",
+      "label": "Dense",
+      "base": "dense",
+      "reranker_model": null,
+      "chunk_set": "recursive",
+      "n": 100,
+      "recall@5": 0.67,
+      "recall@5_ci": [
+        0.57,
+        0.76
+      ],
+      "recall@10": 0.78,
+      "mrr@10": 0.512,
+      "coverage@5": 0.67,
+      "retrieval_p50_ms": 15.0,
+      "retrieval_p95_ms": 19.4
+    },
+    {
+      "pipeline": "hybrid",
+      "label": "Hybrid (RRF)",
+      "base": "hybrid",
+      "reranker_model": null,
+      "chunk_set": "recursive",
+      "n": 100,
+      "recall@5": 0.73,
+      "recall@5_ci": [
+        0.64,
+        0.82
+      ],
+      "recall@10": 0.87,
+      "mrr@10": 0.5702,
+      "coverage@5": 0.73,
+      "retrieval_p50_ms": 15.5,
+      "retrieval_p95_ms": 19.1
+    },
+    {
+      "pipeline": "hybrid_rerank",
+      "label": "Hybrid + rerank",
+      "base": "hybrid_rerank",
+      "reranker_model": null,
+      "chunk_set": "recursive",
+      "n": 100,
+      "recall@5": 0.77,
+      "recall@5_ci": [
+        0.68,
+        0.85
+      ],
+      "recall@10": 0.84,
+      "mrr@10": 0.6104,
+      "coverage@5": 0.77,
+      "retrieval_p50_ms": 4393.3,
+      "retrieval_p95_ms": 5722.6
+    },
+    {
+      "pipeline": "hybrid_rewrite",
+      "label": "Hybrid + rewrite",
+      "base": "hybrid_rewrite",
+      "reranker_model": null,
+      "chunk_set": "recursive",
+      "n": 100,
+      "recall@5": 0.84,
+      "recall@5_ci": [
+        0.76,
+        0.91
+      ],
+      "recall@10": 0.9,
+      "mrr@10": 0.6029,
+      "coverage@5": 0.84,
+      "retrieval_p50_ms": 3896.0,
+      "retrieval_p95_ms": 8076.2
+    },
+    {
+      "pipeline": "hybrid_rerank_minilm",
+      "label": "Hybrid + MiniLM rerank",
+      "base": "hybrid_rerank",
+      "reranker_model": "Xenova/ms-marco-MiniLM-L-6-v2",
+      "chunk_set": "recursive",
+      "n": 100,
+      "recall@5": 0.72,
+      "recall@5_ci": [
+        0.63,
+        0.81
+      ],
+      "recall@10": 0.82,
+      "mrr@10": 0.525,
+      "coverage@5": 0.72,
+      "retrieval_p50_ms": 707.0,
+      "retrieval_p95_ms": 973.4
+    },
+    {
+      "pipeline": "hybrid_rerank_jina",
+      "label": "Hybrid + Jina rerank",
+      "base": "hybrid_rerank",
+      "reranker_model": "jinaai/jina-reranker-v1-turbo-en",
+      "chunk_set": "recursive",
+      "n": 100,
+      "recall@5": 0.72,
+      "recall@5_ci": [
+        0.63,
+        0.81
+      ],
+      "recall@10": 0.81,
+      "mrr@10": 0.5479,
+      "coverage@5": 0.72,
+      "retrieval_p50_ms": 754.1,
+      "retrieval_p95_ms": 958.8
+    },
+    {
+      "pipeline": "bm25",
+      "label": "BM25",
+      "base": "bm25",
+      "reranker_model": null,
+      "chunk_set": "heading",
+      "n": 100,
+      "recall@5": 0.75,
+      "recall@5_ci": [
+        0.66,
+        0.84
+      ],
+      "recall@10": 0.79,
+      "mrr@10": 0.5678,
+      "coverage@5": 0.75,
+      "retrieval_p50_ms": 0.2,
+      "retrieval_p95_ms": 0.2,
+      "answered": 100,
+      "judged": 100,
+      "judge_failures": 0,
+      "faithfulness": 4.97,
+      "faithfulness_ci": [
+        4.93,
+        5.0
+      ],
+      "faithful_rate": 1.0,
+      "correctness": 4.15,
+      "correctness_ci": [
+        3.93,
+        4.36
+      ],
+      "correct_rate": 0.86,
+      "abstention_rate": 0.07,
+      "generation_p50_ms": 5381.9,
+      "generation_p95_ms": 8306.9,
+      "e2e_p50_ms": 5382.1,
+      "e2e_p95_ms": 8307.0,
+      "cost_per_1k_usd": 0.5756
+    },
+    {
+      "pipeline": "dense",
+      "label": "Dense",
+      "base": "dense",
+      "reranker_model": null,
+      "chunk_set": "heading",
+      "n": 100,
+      "recall@5": 0.75,
+      "recall@5_ci": [
+        0.67,
+        0.83
+      ],
+      "recall@10": 0.87,
+      "mrr@10": 0.5408,
+      "coverage@5": 0.75,
+      "retrieval_p50_ms": 11.9,
+      "retrieval_p95_ms": 16.6,
+      "answered": 100,
+      "judged": 100,
+      "judge_failures": 0,
+      "faithfulness": 4.96,
+      "faithfulness_ci": [
+        4.92,
+        4.99
+      ],
+      "faithful_rate": 1.0,
+      "correctness": 4.08,
+      "correctness_ci": [
+        3.85,
+        4.31
+      ],
+      "correct_rate": 0.84,
+      "abstention_rate": 0.09,
+      "generation_p50_ms": 4844.4,
+      "generation_p95_ms": 8998.7,
+      "e2e_p50_ms": 4857.1,
+      "e2e_p95_ms": 9009.7,
+      "cost_per_1k_usd": 0.5771
+    },
+    {
+      "pipeline": "hybrid",
+      "label": "Hybrid (RRF)",
+      "base": "hybrid",
+      "reranker_model": null,
+      "chunk_set": "heading",
+      "n": 100,
+      "recall@5": 0.81,
+      "recall@5_ci": [
+        0.73,
+        0.88
+      ],
+      "recall@10": 0.87,
+      "mrr@10": 0.5977,
+      "coverage@5": 0.81,
+      "retrieval_p50_ms": 11.5,
+      "retrieval_p95_ms": 13.6,
+      "answered": 100,
+      "judged": 100,
+      "judge_failures": 0,
+      "faithfulness": 4.97,
+      "faithfulness_ci": [
+        4.94,
+        5.0
+      ],
+      "faithful_rate": 1.0,
+      "correctness": 4.25,
+      "correctness_ci": [
+        4.04,
+        4.44
+      ],
+      "correct_rate": 0.88,
+      "abstention_rate": 0.05,
+      "generation_p50_ms": 2799.6,
+      "generation_p95_ms": 9696.4,
+      "e2e_p50_ms": 2811.2,
+      "e2e_p95_ms": 9708.9,
+      "cost_per_1k_usd": 0.5949
+    },
+    {
+      "pipeline": "hybrid_rerank",
+      "label": "Hybrid + rerank",
+      "base": "hybrid_rerank",
+      "reranker_model": null,
+      "chunk_set": "heading",
+      "n": 100,
+      "recall@5": 0.75,
+      "recall@5_ci": [
+        0.67,
+        0.83
+      ],
+      "recall@10": 0.86,
+      "mrr@10": 0.6059,
+      "coverage@5": 0.75,
+      "retrieval_p50_ms": 4984.1,
+      "retrieval_p95_ms": 5649.2,
+      "answered": 100,
+      "judged": 100,
+      "judge_failures": 0,
+      "faithfulness": 4.96,
+      "faithfulness_ci": [
+        4.92,
+        4.99
+      ],
+      "faithful_rate": 1.0,
+      "correctness": 4.13,
+      "correctness_ci": [
+        3.9,
+        4.36
+      ],
+      "correct_rate": 0.85,
+      "abstention_rate": 0.08,
+      "generation_p50_ms": 1267.7,
+      "generation_p95_ms": 8546.8,
+      "e2e_p50_ms": 6638.7,
+      "e2e_p95_ms": 12673.8,
+      "cost_per_1k_usd": 0.6289
+    },
+    {
+      "pipeline": "hybrid_rewrite",
+      "label": "Hybrid + rewrite",
+      "base": "hybrid_rewrite",
+      "reranker_model": null,
+      "chunk_set": "heading",
+      "n": 100,
+      "recall@5": 0.82,
+      "recall@5_ci": [
+        0.74,
+        0.89
+      ],
+      "recall@10": 0.93,
+      "mrr@10": 0.6161,
+      "coverage@5": 0.82,
+      "retrieval_p50_ms": 3898.1,
+      "retrieval_p95_ms": 8079.8,
+      "answered": 100,
+      "judged": 100,
+      "judge_failures": 0,
+      "faithfulness": 4.98,
+      "faithfulness_ci": [
+        4.95,
+        5.0
+      ],
+      "faithful_rate": 1.0,
+      "correctness": 4.24,
+      "correctness_ci": [
+        4.02,
+        4.44
+      ],
+      "correct_rate": 0.91,
+      "abstention_rate": 0.07,
+      "generation_p50_ms": 1473.1,
+      "generation_p95_ms": 7045.6,
+      "e2e_p50_ms": 5904.9,
+      "e2e_p95_ms": 12425.8,
+      "cost_per_1k_usd": 0.816
+    },
+    {
+      "pipeline": "hybrid_rerank_minilm",
+      "label": "Hybrid + MiniLM rerank",
+      "base": "hybrid_rerank",
+      "reranker_model": "Xenova/ms-marco-MiniLM-L-6-v2",
+      "chunk_set": "heading",
+      "n": 100,
+      "recall@5": 0.77,
+      "recall@5_ci": [
+        0.68,
+        0.85
+      ],
+      "recall@10": 0.86,
+      "mrr@10": 0.5842,
+      "coverage@5": 0.77,
+      "retrieval_p50_ms": 777.5,
+      "retrieval_p95_ms": 4285.7
+    },
+    {
+      "pipeline": "hybrid_rerank_jina",
+      "label": "Hybrid + Jina rerank",
+      "base": "hybrid_rerank",
+      "reranker_model": "jinaai/jina-reranker-v1-turbo-en",
+      "chunk_set": "heading",
+      "n": 100,
+      "recall@5": 0.7,
+      "recall@5_ci": [
+        0.61,
+        0.79
+      ],
+      "recall@10": 0.81,
+      "mrr@10": 0.5788,
+      "coverage@5": 0.7,
+      "retrieval_p50_ms": 1007.4,
+      "retrieval_p95_ms": 6161.5
+    }
+  ],
+  "comparisons": {
+    "winner": "hybrid",
+    "correctness_diff": {
+      "bm25": [
+        0.1,
+        -0.08,
+        0.29
+      ],
+      "dense": [
+        0.17,
+        -0.09,
+        0.42
+      ],
+      "hybrid_rerank": [
+        0.12,
+        -0.09,
+        0.33
+      ],
+      "hybrid_rewrite": [
+        0.01,
+        -0.23,
+        0.24
+      ]
+    },
+    "recall5_diff": {
+      "bm25": [
+        0.06,
+        0.01,
+        0.12
+      ],
+      "dense": [
+        0.06,
+        -0.03,
+        0.15
+      ],
+      "hybrid_rerank": [
+        0.06,
+        -0.02,
+        0.14
+      ],
+      "hybrid_rewrite": [
+        -0.01,
+        -0.09,
+        0.07
+      ]
+    }
+  }
+}

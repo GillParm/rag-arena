@@ -1,0 +1,6 @@
+pipeline,chunk_set,n,recall@5,recall@10,mrr@10,coverage@5,faithfulness,faithful_rate,correctness,correct_rate,abstention_rate,retrieval_p50_ms,retrieval_p95_ms,generation_p50_ms,generation_p95_ms,e2e_p50_ms,e2e_p95_ms,cost_per_1k_usd,judge_failures
+bm25,heading,100,0.75,0.79,0.5678,0.75,4.97,1.0,4.15,0.86,0.07,0.2,0.2,5381.9,8306.9,5382.1,8307.0,0.5756,0
+dense,heading,100,0.75,0.87,0.5408,0.75,4.96,1.0,4.08,0.84,0.09,11.9,16.6,4844.4,8998.7,4857.1,9009.7,0.5771,0
+hybrid,heading,100,0.81,0.87,0.5977,0.81,4.97,1.0,4.25,0.88,0.05,11.5,13.6,2799.6,9696.4,2811.2,9708.9,0.5949,0
+hybrid_rerank,heading,100,0.75,0.86,0.6059,0.75,4.96,1.0,4.13,0.85,0.08,4984.1,5649.2,1267.7,8546.8,6638.7,12673.8,0.6289,0
+hybrid_rewrite,heading,100,0.82,0.93,0.6161,0.82,4.98,1.0,4.24,0.91,0.07,3898.1,8079.8,1473.1,7045.6,5904.9,12425.8,0.816,0
