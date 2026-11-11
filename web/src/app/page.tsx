@@ -21,7 +21,7 @@ async function ArenaLoader() {
 export default function AskPage() {
   return (
     <div className="mx-auto max-w-[1440px] px-4 py-8 sm:px-6 sm:py-10">
-      <h1 className="max-w-[20ch] text-[clamp(1.9rem,3.6vw,2.9rem)] leading-[1.05] font-bold tracking-[-0.02em]">
+      <h1 className="text-[clamp(1.9rem,3.6vw,2.9rem)] leading-[1.05] font-bold tracking-[-0.02em]">
         One question, five retrieval pipelines.
       </h1>
       <p className="text-ink-2 mt-3 max-w-[62ch] text-[16px] leading-relaxed">

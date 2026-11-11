@@ -36,9 +36,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <header className="border-rule bg-surface border-b">
           <nav
             aria-label="Main"
-            className="mx-auto flex max-w-[1440px] items-center gap-6 px-4 py-3 sm:px-6"
+            className="mx-auto flex max-w-[1440px] items-center gap-3 px-4 py-3 sm:gap-6 sm:px-6"
           >
-            <Link href="/" className="text-ink text-[17px] font-bold tracking-tight">
+            <Link
+              href="/"
+              className="text-ink text-[17px] font-bold tracking-tight whitespace-nowrap"
+            >
               rag-arena
             </Link>
             <div className="flex items-center gap-1 text-[15px]">
@@ -59,7 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               href={REPO_URL}
               className="text-ink-2 decoration-rule-strong hover:text-ink ml-auto text-[14px] underline underline-offset-4"
             >
-              Source on GitHub
+              <span className="hidden sm:inline">Source on </span>GitHub
             </a>
           </nav>
         </header>
