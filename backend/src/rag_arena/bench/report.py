@@ -244,6 +244,12 @@ def _fmt(x: Any, pct: bool = False, nd: int = 2) -> str:
     return f"{x:.{nd}f}"
 
 
+def _ms(x: float | None) -> str:
+    if x is None:
+        return "n/a"
+    return f"{x:.1f}" if x < 10 else f"{x:,.0f}"
+
+
 def markdown_tables(summary: dict[str, Any]) -> str:
     lines = [
         f"Headline chunker: `{summary['headline_chunk_set']}`. "
@@ -259,8 +265,8 @@ def markdown_tables(summary: dict[str, Any]) -> str:
             f"| {e['label']} | {_fmt(e['recall@5'])} | {_fmt(e['recall@10'])} "
             f"| {_fmt(e['mrr@10'])} | {_fmt(e.get('faithfulness'))} "
             f"| {_fmt(e.get('correctness'))} "
-            f"| {e['retrieval_p50_ms']:.0f} / {e['retrieval_p95_ms']:.0f} ms "
-            f"| {e['e2e_p50_ms']:.0f} / {e['e2e_p95_ms']:.0f} ms "
+            f"| {_ms(e['retrieval_p50_ms'])} / {_ms(e['retrieval_p95_ms'])} ms "
+            f"| {_ms(e['e2e_p50_ms'])} / {_ms(e['e2e_p95_ms'])} ms "
             f"| ${e['cost_per_1k_usd']:.3f} |"
         )
     lines += [
@@ -273,7 +279,7 @@ def markdown_tables(summary: dict[str, Any]) -> str:
     for e in sorted(summary["ablation"], key=lambda e: (e["pipeline"], e["chunk_set"])):
         lines.append(
             f"| {e['label']} | {e['chunk_set']} | {_fmt(e['recall@5'])} | {_fmt(e['recall@10'])} "
-            f"| {_fmt(e['mrr@10'])} | {e['retrieval_p50_ms']:.0f} ms |"
+            f"| {_fmt(e['mrr@10'])} | {_ms(e['retrieval_p50_ms'])} ms |"
         )
     return "\n".join(lines) + "\n"
 

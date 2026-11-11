@@ -124,40 +124,43 @@ def bench_run(
                 rerankers[model] = FastReranker(model, cache_dir=rt.model_dir)
             return rerankers[model]
 
-        asyncio.run(
-            stage_retrieval(
+        async def all_stages() -> tuple[str, dict[str, dict[str, float]]]:
+            # One event loop for every stage: the Gemini client and its rate limiter are
+            # bound to the loop they first run on.
+            await stage_retrieval(
                 items, cfg, stores, rt.backend, reranker_for, lambda: rt.rewriter, typer.echo
             )
-        )
-        chosen, rule = choose_headline(items, stores, cfg.chunk_sets)
-        head = headline or chosen
-        typer.echo(f"headline chunk set: {head} (rule: {json.dumps(rule)})")
-        base_specs = default_specs()
-        complete = True
-        if generate:
-            complete = asyncio.run(
-                stage_generation(
+            chosen, rule = choose_headline(items, stores, cfg.chunk_sets)
+            head = headline or chosen
+            typer.echo(f"headline chunk set: {head} (rule: {json.dumps(rule)})")
+            base_specs = default_specs()
+            complete = True
+            if generate:
+                complete = await stage_generation(
                     items, base_specs, head, stores, rt.backend(head), rt.llm, typer.echo
                 )
-            )
-        if judge and complete:
-            if not s.anthropic_api_key or not s.has_anthropic():
-                raise typer.BadParameter("ANTHROPIC_API_KEY is not set", param_hint="env")
-            claude = ClaudeJSON(
-                s.anthropic_api_key.get_secret_value(),
-                s.judge_model,
-                SpendLedger(s.results_dir / "spend" / "anthropic.jsonl"),
-            )
-            stage_judge(
-                items,
-                base_specs,
-                head,
-                stores,
-                rt.backend(head),
-                claude,
-                cfg.judge_mode,
-                typer.echo,
-            )
+            if judge and complete:
+                if not s.anthropic_api_key or not s.has_anthropic():
+                    raise typer.BadParameter("ANTHROPIC_API_KEY is not set", param_hint="env")
+                claude = ClaudeJSON(
+                    s.anthropic_api_key.get_secret_value(),
+                    s.judge_model,
+                    SpendLedger(s.results_dir / "spend" / "anthropic.jsonl"),
+                )
+                await asyncio.to_thread(
+                    stage_judge,
+                    items,
+                    base_specs,
+                    head,
+                    stores,
+                    rt.backend(head),
+                    claude,
+                    cfg.judge_mode,
+                    typer.echo,
+                )
+            return head, rule
+
+        head, rule = asyncio.run(all_stages())
     write_config(cfg, {"headline": head, "headline_rule_scores": rule, "questions": len(items)})
     _report(s, run_name, items, specs, cfg.chunk_sets, head, rule)
 
