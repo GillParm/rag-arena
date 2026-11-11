@@ -43,8 +43,9 @@ class Settings(BaseSettings):
     judge_model: str = "claude-opus-5-5"
     eval_author_model: str = "claude-opus-5-5"
 
-    # Client-side limits for the Gemini free tier.
-    gemini_rpm: int = 30
+    # Client-side limits. The Gemini free tier allows 15 requests a minute per model; stay
+    # just under it.
+    gemini_rpm: int = 14
     gemini_concurrency: int = 4
 
     cors_origins: list[str] = ["http://localhost:3300"]

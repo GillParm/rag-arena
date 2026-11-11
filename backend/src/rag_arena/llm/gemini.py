@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import re
 import time
 from typing import Any
@@ -13,6 +14,13 @@ from rag_arena.llm.base import LLMResponse, Usage
 from rag_arena.llm.ratelimit import RateLimiter, retry_async
 
 RETRYABLE_STATUS = {408, 429, 500, 502, 503, 504}
+
+log = logging.getLogger("rag_arena.llm.gemini")
+
+
+def _log_retry(attempt: int, exc: Exception, delay: float) -> None:
+    code = exc.code if isinstance(exc, errors.APIError) else type(exc).__name__
+    log.info("gemini retry %d after %s, waiting %.1fs", attempt, code, delay)
 
 
 class DailyQuotaExhaustedError(RuntimeError):
@@ -108,7 +116,7 @@ class GeminiClient:
             return resp
 
         try:
-            resp = await retry_async(once, retry_after=gemini_retry_after)
+            resp = await retry_async(once, retry_after=gemini_retry_after, on_retry=_log_retry)
         except errors.APIError as exc:
             if is_daily_quota(exc):
                 raise DailyQuotaExhaustedError(str(exc)) from exc

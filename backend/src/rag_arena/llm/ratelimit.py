@@ -64,6 +64,7 @@ async def retry_async[T](
     base: float = 2.0,
     cap: float = 60.0,
     sleep: Callable[[float], Awaitable[None]] = asyncio.sleep,
+    on_retry: Callable[[int, Exception, float], None] | None = None,
 ) -> T:
     """Call `fn` until it succeeds.
 
@@ -80,5 +81,7 @@ async def retry_async[T](
             if attempt == max_attempts - 1:
                 raise RetryGiveUpError(f"gave up after {max_attempts} attempts: {exc}") from exc
             delay = hint if hint > 0 else backoff_delay(attempt, base=base, cap=cap)
+            if on_retry is not None:
+                on_retry(attempt + 1, exc, delay)
             await sleep(delay)
     raise AssertionError("unreachable")

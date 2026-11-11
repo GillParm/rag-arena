@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 from collections import Counter
 from collections.abc import Iterator
 from contextlib import contextmanager, nullcontext
@@ -33,6 +34,15 @@ app = typer.Typer(
     no_args_is_help=True,
     add_completion=False,
 )
+
+
+@app.callback()
+def _main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Log retries.")) -> None:
+    logging.basicConfig(
+        level=logging.INFO if verbose else logging.WARNING,
+        format="%(asctime)s %(name)s %(message)s",
+        datefmt="%H:%M:%S",
+    )
 
 
 @app.command()
