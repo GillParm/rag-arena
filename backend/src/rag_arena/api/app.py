@@ -71,8 +71,12 @@ def _warm(service: ArenaService) -> None:
         sets = [s.id for s in service.runtime.chunk_sets()]
         default = service.default_chunk_set(sets)
         if default:
-            service.runtime.backend(default)
-        _ = service.runtime.reranker
+            backend = service.runtime.backend(default)
+            backend.embed_queries(["warm up"])
+            # The first cross-encoder call on real-sized passages is several times slower than
+            # later ones; pay for it here rather than in the first question.
+            sample = [row.index_text for row in list(backend.chunks.values())[:20]]
+            service.runtime.reranker.score("warm up", sample)
     except Exception:  # the API still serves /health and the leaderboard without an index
         log.exception("warm-up failed")
 
