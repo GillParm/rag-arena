@@ -202,23 +202,31 @@ async def stage_generation(
     backend: SearchBackend,
     llm: Any,
     log: Log,
+    *,
+    workers: int = 4,
 ) -> bool:
     """Generate answers from each pipeline's top chunks. Returns False if it had to stop early
-    (daily quota), in which case re-running resumes."""
+    (daily quota), in which case re-running resumes.
+
+    Work is ordered question by question, so a run cut short still has every pipeline's answer
+    for the same questions. A small worker pool pulls from the queue and stops taking new work
+    as soon as the daily quota is reported.
+    """
     todo = [
         (spec, it)
-        for spec in specs
         for it in items
+        for spec in specs
         if not stores.generation.has((spec.id, chunk_set, it.id))
     ]
     log(f"generation on {chunk_set}: {len(todo)} answers to write")
+    queue: asyncio.Queue[tuple[PipelineSpec, QAItem]] = asyncio.Queue()
+    for job in todo:
+        queue.put_nowait(job)
     stop = asyncio.Event()
     done = 0
 
     async def one(spec: PipelineSpec, it: QAItem) -> None:
         nonlocal done
-        if stop.is_set():
-            return
         rec = stores.retrieval.get((spec.id, chunk_set, it.id))
         if rec is None:
             return
@@ -240,7 +248,15 @@ async def stage_generation(
         if done % 25 == 0:
             log(f"  {done}/{len(todo)} answers")
 
-    await asyncio.gather(*(one(spec, it) for spec, it in todo))
+    async def worker() -> None:
+        while not stop.is_set():
+            try:
+                spec, it = queue.get_nowait()
+            except asyncio.QueueEmpty:
+                return
+            await one(spec, it)
+
+    await asyncio.gather(*(worker() for _ in range(max(1, workers))))
     return not stop.is_set()
 
 

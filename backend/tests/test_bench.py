@@ -153,3 +153,37 @@ async def test_full_benchmark_offline_and_resumable(tmp_path: Path) -> None:
     md = markdown_tables(summary)
     assert "| Hybrid (RRF) |" in md
     assert "Chunker ablation" in md
+
+
+async def test_generation_stops_taking_work_after_the_daily_quota(tmp_path: Path) -> None:
+    from rag_arena.llm.gemini import DailyQuotaExhaustedError
+
+    backend = make_backend(CHUNKS, set_id="a")
+    cfg = BenchConfig(run_dir=tmp_path / "run", chunk_sets=["a"])
+    stores = Stores(cfg.run_dir)
+    await stage_retrieval(
+        ITEMS,
+        cfg,
+        stores,
+        lambda _s: backend,
+        lambda _m: OverlapReranker(),
+        CountingRewriter,
+        lambda _: None,
+    )
+    calls = {"n": 0}
+
+    def reply(_s: str, _p: str) -> str:
+        calls["n"] += 1
+        if calls["n"] > 4:
+            raise DailyQuotaExhaustedError("quota")
+        return "ok [1]"
+
+    ok = await stage_generation(
+        ITEMS, default_specs(), "a", stores, backend, FakeLLM(reply), lambda _: None, workers=2
+    )
+    assert not ok
+    assert len(stores.generation) == 4
+    assert calls["n"] <= 6  # at most one extra call per worker after the quota error
+    # Question-major order: the first answers cover every pipeline for q001.
+    first = [r for r in stores.generation if r["qid"] == "q001"]
+    assert len(first) == 4
