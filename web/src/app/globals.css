@@ -1,26 +1,94 @@
 @import "tailwindcss";
 
+/*
+  Tokens. Pipelines keep one colour everywhere (categorical slots 1-5, validated for colour
+  vision deficiency in both modes); text never wears a pipeline colour.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  color-scheme: light;
+  --bench: #eef1f4;
+  --surface: #ffffff;
+  --surface-2: #f6f8fa;
+  --ink: #16202a;
+  --ink-2: #4a5663;
+  --muted: #6f7b88;
+  --rule: #dce1e6;
+  --rule-strong: #c4ccd4;
+  --focus: #2a78d6;
+  --mark: #fff0b3;
+  --grid: #e6e9ed;
+  --p-bm25: #2a78d6;
+  --p-dense: #eb6834;
+  --p-hybrid: #1baf7a;
+  --p-hybrid_rerank: #eda100;
+  --p-hybrid_rewrite: #e87ba4;
+  --danger: #b42318;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --bench: #11171d;
+    --surface: #1b232c;
+    --surface-2: #212a34;
+    --ink: #eef1f4;
+    --ink-2: #b9c2cc;
+    --muted: #8a96a3;
+    --rule: #2c3743;
+    --rule-strong: #3b4855;
+    --focus: #5598e7;
+    --mark: #4a3f12;
+    --grid: #26303a;
+    --p-bm25: #3987e5;
+    --p-dense: #d95926;
+    --p-hybrid: #199e70;
+    --p-hybrid_rerank: #c98500;
+    --p-hybrid_rewrite: #d55181;
+    --danger: #f97066;
   }
 }
 
+@theme inline {
+  --color-bench: var(--bench);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-focus: var(--focus);
+  --color-mark: var(--mark);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+html {
+  background: var(--bench);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bench);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .motion-safe-transition {
+    transition: none;
+  }
 }
