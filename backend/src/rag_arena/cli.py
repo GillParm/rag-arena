@@ -10,6 +10,7 @@ from contextlib import contextmanager, nullcontext
 import typer
 
 from rag_arena import __version__
+from rag_arena.bench.cli import bench_app
 from rag_arena.chunking.base import ChunkerSpec
 from rag_arena.config import Settings, get_settings
 from rag_arena.corpus.download import corpus_root, fetch_corpus
@@ -284,6 +285,9 @@ def spend() -> None:
     typer.echo(
         f"{'total':<16} {len(rows):>5} calls  ${sum(sum(c) for c in by_purpose.values()):8.4f}"
     )
+
+
+app.add_typer(bench_app, name="bench")
 
 
 if __name__ == "__main__":
