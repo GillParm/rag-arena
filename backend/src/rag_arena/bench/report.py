@@ -276,7 +276,13 @@ def markdown_tables(summary: dict[str, Any]) -> str:
         "| Pipeline | Chunker | Recall@5 | Recall@10 | MRR@10 | Retrieval p50 |",
         "| --- | --- | ---: | ---: | ---: | ---: |",
     ]
-    for e in sorted(summary["ablation"], key=lambda e: (e["pipeline"], e["chunk_set"])):
+    pipeline_order = {p: i for i, p in enumerate(PIPELINE_LABELS)}
+    set_order = {s: i for i, s in enumerate(("fixed", "recursive", "heading"))}
+    ablation = sorted(
+        summary["ablation"],
+        key=lambda e: (pipeline_order.get(e["pipeline"], 99), set_order.get(e["chunk_set"], 9)),
+    )
+    for e in ablation:
         lines.append(
             f"| {e['label']} | {e['chunk_set']} | {_fmt(e['recall@5'])} | {_fmt(e['recall@10'])} "
             f"| {_fmt(e['mrr@10'])} | {_ms(e['retrieval_p50_ms'])} ms |"

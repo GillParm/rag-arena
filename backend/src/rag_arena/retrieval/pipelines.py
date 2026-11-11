@@ -28,6 +28,9 @@ PIPELINE_LABELS: dict[str, str] = {
     "hybrid": "Hybrid (RRF)",
     "hybrid_rerank": "Hybrid + rerank",
     "hybrid_rewrite": "Hybrid + rewrite",
+    # Reranker variants benchmarked for retrieval only.
+    "hybrid_rerank_minilm": "Hybrid + MiniLM rerank",
+    "hybrid_rerank_jina": "Hybrid + Jina rerank",
 }
 
 
