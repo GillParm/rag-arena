@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+from collections import Counter
 from collections.abc import Iterator
 from contextlib import contextmanager, nullcontext
 
@@ -18,7 +19,11 @@ from rag_arena.db import repo
 from rag_arena.db.connection import connection
 from rag_arena.db.migrate import migrate, reset
 from rag_arena.embedding import FastEmbedder
+from rag_arena.evalset.build import build_eval_set
+from rag_arena.evalset.review import review
+from rag_arena.evalset.schema import read_items
 from rag_arena.indexing import build_chunk_set
+from rag_arena.llm.claude import ClaudeJSON, SpendLedger
 from rag_arena.retrieval.pipelines import PIPELINES, run_pipeline
 from rag_arena.runtime import Runtime
 
@@ -190,6 +195,95 @@ def search(
         typer.echo("rewrites: " + " | ".join(result.rewrites))
     timings = ", ".join(f"{k} {v:.1f}ms" for k, v in result.timings.items())
     typer.echo(f"{result.latency_ms:.1f} ms ({timings})")
+
+
+eval_app = typer.Typer(help="Build, inspect and review the eval set.", no_args_is_help=True)
+app.add_typer(eval_app, name="eval")
+
+
+def _ledger(s: Settings) -> SpendLedger:
+    return SpendLedger(s.results_dir / "spend" / "anthropic.jsonl")
+
+
+def _claude(s: Settings, model: str) -> ClaudeJSON:
+    if not s.anthropic_api_key or not s.has_anthropic():
+        raise typer.BadParameter("ANTHROPIC_API_KEY is not set", param_hint="env")
+    return ClaudeJSON(s.anthropic_api_key.get_secret_value(), model, _ledger(s))
+
+
+@eval_app.command("build")
+def eval_build(
+    candidates: int = typer.Option(150, help="Sections to write candidate questions from."),
+    target: int = typer.Option(100, help="Questions to keep."),
+    mode: str = typer.Option("batch", help="batch (half price, slower) or sync."),
+) -> None:
+    """Write candidate questions with Claude, filter them and save data/eval/qa.jsonl."""
+    if mode not in ("batch", "sync"):
+        raise typer.BadParameter("mode must be batch or sync")
+    s = get_settings()
+    docs = _load_docs(s)
+    claude = _claude(s, s.eval_author_model)
+    items = build_eval_set(
+        docs,
+        claude,
+        _embedder(s),
+        s.eval_path.parent,
+        corpus_ref=s.corpus_ref,
+        n_candidates=candidates,
+        target=target,
+        mode="batch" if mode == "batch" else "sync",
+        log=typer.echo,
+    )
+    typer.echo(f"{len(items)} questions; Anthropic spend so far ${_ledger(s).total_usd():.2f}")
+
+
+@eval_app.command("stats")
+def eval_stats() -> None:
+    """Summarise the eval set by status, question type and page."""
+    items = read_items(get_settings().eval_path)
+    by_status = Counter(i.status for i in items)
+    by_type = Counter(i.question_type for i in items)
+    typer.echo(f"{len(items)} entries; {sum(i.usable for i in items)} usable")
+    typer.echo("status: " + ", ".join(f"{k} {v}" for k, v in sorted(by_status.items())))
+    typer.echo("type:   " + ", ".join(f"{k} {v}" for k, v in sorted(by_type.items())))
+    typer.echo(f"pages:  {len({i.doc_id for i in items})}")
+    typer.echo(f"human reviewed: {sum(i.human_reviewed for i in items)}")
+
+
+@eval_app.command("review")
+def eval_review(
+    all_entries: bool = typer.Option(False, "--all", help="Include entries already reviewed."),
+) -> None:
+    """Approve, edit or reject entries one by one; progress is saved after each decision."""
+    s = get_settings()
+    doc_texts: dict[str, str] = {}
+    root = corpus_root(s.raw_dir, s.corpus_ref)
+    if (root / "LICENSE").exists():
+        doc_texts = {d.id: d.text for d in load_corpus(root)}
+    counts = review(
+        s.eval_path,
+        ask=lambda prompt, default: str(
+            typer.prompt(prompt, default=default, show_default=bool(default))
+        ),
+        say=typer.echo,
+        doc_texts=doc_texts,
+        include_reviewed=all_entries,
+    )
+    typer.echo(", ".join(f"{k} {v}" for k, v in counts.items()))
+
+
+@app.command()
+def spend() -> None:
+    """Total Anthropic spend recorded in results/spend/anthropic.jsonl, by purpose."""
+    rows = _ledger(get_settings()).rows()
+    by_purpose: dict[str, list[float]] = {}
+    for r in rows:
+        by_purpose.setdefault(r["purpose"], []).append(float(r["cost_usd"]))
+    for purpose, costs in sorted(by_purpose.items()):
+        typer.echo(f"{purpose:<16} {len(costs):>5} calls  ${sum(costs):8.4f}")
+    typer.echo(
+        f"{'total':<16} {len(rows):>5} calls  ${sum(sum(c) for c in by_purpose.values()):8.4f}"
+    )
 
 
 if __name__ == "__main__":
