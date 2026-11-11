@@ -36,11 +36,12 @@ TextEmbedding(sys.argv[1], cache_dir='/models'); TextCrossEncoder(sys.argv[2], c
 
 FROM base AS runtime
 RUN useradd --create-home --uid 10001 app \
-    && mkdir -p /app/data /app/results/runs/main \
+    && mkdir -p /app/data /app/results \
     && chown -R app:app /app
 COPY --from=build /opt/venv /opt/venv
 COPY --from=models --chown=app:app /models /models
-COPY --chown=app:app results/runs/main/summary.json /app/results/runs/main/summary.json
+# Published summaries (the raw per-question records are excluded in .dockerignore).
+COPY --chown=app:app results/ /app/results/
 ENV PATH=/opt/venv/bin:$PATH \
     RAG_ARENA_MODEL_CACHE_DIR=/models \
     RAG_ARENA_DATA_DIR=/app/data \
