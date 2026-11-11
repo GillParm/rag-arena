@@ -29,12 +29,11 @@ from rag_arena.retrieval.rerank import Reranker
 from rag_arena.retrieval.rewrite import Rewriter
 
 PIPELINE_DESCRIPTIONS = {
-    "bm25": "Keyword search with BM25 over stemmed tokens.",
-    "dense": "Nearest neighbours by cosine similarity of bge-small embeddings in pgvector.",
-    "hybrid": "BM25 and dense top 50, merged with reciprocal rank fusion (k = 60).",
-    "hybrid_rerank": "Hybrid top 20 re-scored by a cross-encoder.",
-    "hybrid_rewrite": "The model writes 3 rewrites; BM25 and dense run for each and all lists are "
-    "fused with RRF.",
+    "bm25": "Keyword search: BM25 over stemmed words.",
+    "dense": "Semantic search: bge-small embeddings, cosine similarity in pgvector.",
+    "hybrid": "BM25 top 50 and dense top 50, merged by reciprocal rank fusion.",
+    "hybrid_rerank": "Hybrid top 20, re-scored by a cross-encoder on CPU.",
+    "hybrid_rewrite": "Hybrid search for the question and three model-written rewrites, fused.",
 }
 
 
