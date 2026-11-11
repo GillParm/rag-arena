@@ -290,5 +290,17 @@ def spend() -> None:
 app.add_typer(bench_app, name="bench")
 
 
+@app.command()
+def serve(
+    host: str = typer.Option("127.0.0.1"),
+    port: int = typer.Option(8300, envvar="PORT"),
+    reload: bool = typer.Option(False),
+) -> None:
+    """Run the HTTP API."""
+    import uvicorn
+
+    uvicorn.run("rag_arena.api.app:create_app", factory=True, host=host, port=port, reload=reload)
+
+
 if __name__ == "__main__":
     app()
